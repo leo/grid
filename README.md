@@ -10,4 +10,4 @@ I made it more complex, but therefore way smaller when it comes to the file size
 
 This is still a great way to create websites and structure them within a layout, so I'd still encourage you to use this code. But to be fair, there's a better solution coming (which isn't implemented in all browsers yet) - you can read about it [here][1]. Have fun with it ;)
 
-[1]: http://leo.github.io/notes/no-more-css-grid-frameworks/
+[1]: http://leo.im/notes/no-more-css-grid-frameworks/

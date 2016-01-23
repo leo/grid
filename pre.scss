@@ -1,90 +1,87 @@
 .container {
-	flex-direction: row;
-	flex-wrap: wrap;
-	margin: 0 auto; 
-	padding: 0 15px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 .row {
-	display: flex;
-	flex-direction: inherit;
-	flex-wrap: inherit;
-	margin: 0 -15px;
+  display: flex;
+  flex-direction: inherit;
+  flex-wrap: inherit;
+  margin: 0 -15px;
 }
 
 .col {
-	box-sizing: border-box;
-	flex: 100%;
-	display: flex;
-	padding: 0 15px;
+  box-sizing: border-box;
+  flex: 100%;
+  display: flex;
+  padding: 0 15px;
 }
 
 $sizes: (
-	( 'xs', 0 ),
-	( 'sm', 768 ),
-	( 'md', 992 ),
-	( 'lg', 1200 )
+  ('xs', 0),
+  ('sm', 768),
+  ('md', 992),
+  ('lg', 1200)
 );
 
-@mixin columns( $handle ) {
-	
-	$i: 1;
-	
-	.#{$handle} {
-		flex: 1 0;
-	}
-	
-	@if ( $handle != 'xs' ) {
-		
-		.#{$handle}-offset-0 {
-			margin-left: 0;
-		}
-		
-	}
-	
-	@while $i < 13 {
-	
-		$width: ( 100 / 12 * $i ) * 1%;
-		
-		.#{$handle}-#{$i} {
-			flex: $width;
-			max-width: $width;
-		}
-		
-		@if ( $i != 12 ) {
-			
-			.#{$handle}-offset-#{$i} {
-				margin-left: $width;
-			}
-			
-		}
-		
-		$i: $i + 1; 
-		
-	}
-	
+@mixin columns($handle) {
+
+  $i: 1;
+
+  .#{$handle} {
+    flex: 1 0;
+  }
+
+  @if ($handle != 'xs') {
+
+    .#{$handle}-offset-0 {
+      margin-left: 0;
+    }
+
+  }
+
+  @while $i < 13 {
+
+    $width: (100 / 12 * $i) * 1%;
+
+    .#{$handle}-#{$i} {
+      flex: $width;
+      max-width: $width;
+    }
+
+    @if ($i != 12) {
+
+      .#{$handle}-offset-#{$i} {
+        margin-left: $width;
+      }
+
+    }
+
+    $i: $i + 1;
+
+  }
+
 }
 
 @each $handle, $pixels in $sizes {
-	
-	@if ( $pixels == 0 ) {
-		
-		@include columns( $handle );
-		
-	} @else {
-		
-		$span: #{$pixels}px;
-		
-		@media only screen and ( min-width: $span ) {
-			
-			.container {
-				width: $span;
-			}
-			
-			@include columns( $handle );
-		
-		}
-		
-	}
-	
+
+  @if ($pixels == 0) {
+    @include columns($handle);
+  } @else {
+
+    $span: #{$pixels}px;
+
+    @media only screen and (min-width: $span) {
+
+      .container {
+        width: $span;
+      }
+
+      @include columns($handle);
+    }
+
+  }
+
 }
